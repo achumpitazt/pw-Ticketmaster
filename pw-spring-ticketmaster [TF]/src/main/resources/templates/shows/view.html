@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace = "layout/layout :: header"></header>
+	
+	<div class="card" style="width: 40rem;">
+	  <div class="card-header">
+	    View Show
+	  </div>
+	  <div class="card-body">
+	  	<p>
+	  		Id: <span th:text="${show.id}"></span> <br>
+	  		Name: <span th:text="${show.name}"></span> <br>
+	  		description: <span th:text="${show.description}"></span> <br>
+	  		time: <span th:text="${show.time}"></span> <br>
+	  		day: <span th:text="${show.day}"></span> <br>
+	  		month: <span th:text="${show.month}"></span> <br>
+	  		year: <span th:text="${show.year}"></span> <br>
+	  		price: <span th:text="${show.price}"></span> <br>
+	  		Event Type: <span th:text="${show.eventType.name}"></span> <br>
+	  		Organiser: <span th:text="${show.organiser.name}"></span> <br>
+	  		Link: <span th:text="${show.enlace}"></span> <br>
+	  	</p>
+	  	
+	    
+	    <a th:href="@{/shows}" class="btn btn-primary"> <i class="fas fa-angle-double-left"></i> Return</a>
+	  </div>
+	</div>
+	
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item">Search</li>
+		    <li class="breadcrumb-item">Feedback</li>
+		    <li class="breadcrumb-item active" aria-current="page">Result for <span th:text="${feedbackbyshowSearch.name}"></span> </li>
+		  </ol>
+		</nav>
+		
+		<h2>Result search:  </h2>
+		
+		<div class="row" style="margin:20px;">
+		  
+		  <div th:each="show : ${feedbackbyshowFound}"  class="col-sm-10">
+		  	<div th:each="feedback : ${show.feedbacks}" >
+		    <div class="card">
+		      <div class="card-body">
+		        <h4 class="card-title" th:text="'Show: '+ ${feedback.show.name}">Special title treatment</h4>
+			    <h6 class="card-text" th:text="'Customer First Name: '+${feedback.customer.firstname}">With supporting text below as a natural lead-in to additional content.</h6>
+			    <h6 class="card-text" th:text="'Customer Last Name: '+${feedback.customer.lastname}"></h6>
+			    <p class="card-text" th:text="'Substance: '+${feedback.substance}">.</p>
+		      	
+		      </div>
+		       </div>
+		    </div>
+		  </div>
+
+		</div>
+	
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

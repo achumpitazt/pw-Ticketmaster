@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace = "layout/layout :: header"></header>
+	
+	<main class="container mt-3">
+	<div>
+	 <form th:fragment="form" class="d-flex" th:action="@{/search/customer/organisers2}" th:object="${organiserSearch}" method="get">
+	 
+                <input class="form-control me-2" type="search" th:field="*{name}" placeholder="Search organiser" aria-label="Search">
+                <button class="btn btn-light" type="submit"><i class="fas fa-search"></i></button>
+      
+     </form>
+     </div>
+     
+		<div class="row">
+		  
+		  <div th:each="organiser : ${organisers}" class="col-sm-3">
+		    <div class="card">
+		      <div class="card-header">
+		      <h5 class="card-text" th:text="'Organiser name: '+${organiser.name}">Special title treatment</h5>
+		      </div>
+		      <div class="card-body">
+			    <p class="card-text" th:text="'Description: '+${organiser.description}">With supporting text below as a natural lead-in to additional content.</p>
+			    <p class="card-text" th:text="'Organiser Email: '+${organiser.email}"></p>
+			   
+		      </div>
+		    </div>
+		  </div>
+
+		</div>
+	
+	</main>
+	
+	
+	
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

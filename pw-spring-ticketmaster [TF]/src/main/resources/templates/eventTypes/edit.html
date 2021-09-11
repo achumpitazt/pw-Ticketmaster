@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace = "layout/layout :: header"></header>
+
+	<div class="card" style="width: 40rem;">
+	  <div class="card-header">
+	    Edit Event Type
+	  </div>
+	  <div class="card-body">
+	  	
+	  	<form th:action="@{/eventTypes/save}" th:object="${eventTypeEdit}" method="post">
+		  <div class="mb-3">
+		    <label for="name" class="form-label">Name</label>
+		    <input type="text" class="form-control" th:field="*{name}" placeholder="Name of the Event Type" >
+		    <label for="name" class="form-label">Description</label>
+		    <input type="text" class="form-control" th:field="*{description}" placeholder="Description of the Event Type" >
+		  	
+		  </div>
+
+		  <button type="submit" class="btn btn-primary">Update</button>
+		</form>
+		<br>
+  		<a th:href="@{/eventTypes}" class="btn btn-primary"> <i class="fas fa-angle-double-left"></i> Return</a>
+	  </div>
+	</div>
+
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

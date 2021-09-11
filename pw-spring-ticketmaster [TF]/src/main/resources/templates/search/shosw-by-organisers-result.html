@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+	
+		<main class="container mt-4">
+		<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item">Search</li>
+		    <li class="breadcrumb-item">Show</li>
+		    <li class="breadcrumb-item active" aria-current="page">Result for <span th:text="${showbyorganiserSearch.name}"></span> </li>
+		  </ol>
+		</nav>
+		
+		
+		<div class="row">
+		  
+		  <div th:each="organiser : ${showbyorganiserFound}"  class="col-sm-3">
+		  	<div th:each="show : ${organiser.shows}" >
+		    <div class="card">
+		      <div class="card-header">
+		      <h5 class="card-text" th:text="${show.name}">Special title treatment</h5>
+		      </div>
+		      <div class="card-body">
+			    <h6 class="card-title" th:text="'Organiser: '+${show.organiser.name}">With supporting text below as a natural lead-in to additional content.</h6>
+			    <h6 class="card-text" th:text="'Event Type: '+${show.eventType.name}"></h6>
+			    <p class="card-text" th:text="'Date: '+${show.day} + '/'+${show.month}+'/'+${show.year}">.</p>
+			    <p class="card-text" th:text="'Description: '+${show.description}"></p>
+			    <p class="card-text" th:text="'Price: '+${show.price}"></p>
+		        <a th:href="@{'/feedbacks/new'}" class="btn btn-outline-warning"><i class="fas fa-comments"></i> Feedback</a>
+		      	<a th:href="@{'/buys/new/'}" class="btn btn-success"><i class="fas fa-shopping-cart"></i> Buy</a>
+		      </div>
+		       </div>
+		    </div>
+		  </div>
+
+		</div>
+		
+		<a th:href="@{/listAllShowCustomer}" class="btn btn-primary mt-4"> <i class="fas fa-angle-double-left" ></i> Return</a>
+		</main>
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	</body>
+</html>
+		

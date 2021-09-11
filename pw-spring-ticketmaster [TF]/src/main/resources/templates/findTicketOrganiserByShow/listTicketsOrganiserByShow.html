@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace = "layout/layout :: header"></header>
+	
+	<main class="container mt-4">
+	
+		<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item">Search</li>
+		    <li class="breadcrumb-item">Show</li>
+		    <li class="breadcrumb-item active" aria-current="page">Find By Show </li>
+		  </ol>
+		</nav>
+		
+		<form class="d-flex" th:action="@{/search/organiser/ticketsByshows}" th:object="${ticketbyshowSearch}" method="get">
+	    	<input class="form-control me-2" type="search" th:field="*{name}" placeholder="Search ticket by show" aria-label="Search">
+	    	<button class="btn btn-light" type="submit">Search</button>
+	    </form>
+		
+		<div class="row">
+		  
+		  <div th:each="ticket : ${tickets}" class="col-sm-3">
+		    <div class="card">
+		    <div class="card-header">
+		    <h5 class="card-text" th:text="' Id:'+${ticket.id}">Special title treatment</h5>
+		    </div>
+		      <div class="card-body">   
+			    <h5 class="card-title" th:text="'Show: '+${ticket.show.name}">With supporting text below as a natural lead-in to additional content.</h5>
+			    <h6 class="card-text" th:text="'Payment Option: '+${ticket.paymentOption.name}">With supporting text below as a natural lead-in to additional content.</h6>
+			    <p  class="card-text" th:text="'Customer first name: '+${ticket.customer.firstname}"></p>
+			    <p  class="card-text" th:text="'Customer last name: '+${ticket.customer.lastname}"></p>
+			    <p  class="card-text" th:text="'Credit card owner: '+${ticket.cardOwner}"></p>
+			    <p  class="card-text" th:text="'Credit card Number: '+${ticket.cardNumber}"></p>
+			    <p  class="card-text" th:text="'Expiration day card: '+${ticket.cardExpirationDay}"></p>
+			    <p  class="card-text" th:text="'CVV: '+${ticket.cvv}"></p>
+			    <p  class="card-text" th:text="'Price: '+${ticket.show.price}"></p>
+			    <p  class="card-text" th:text="'TicketMaster commission: '+${(ticket.show.price*0.20)}"></p>
+			    <p  class="card-text" th:text="'Taxe '+${(ticket.show.price*0.18)}"></p>
+			    <p  class="card-text" th:text="'Total: '+${ticket.show.price + (ticket.show.price*0.2) + (ticket.show.price*0.18)}"></p>
+			   <h5  class="card-text" th:text="'Gain: '+${ticket.show.price}"></h5>
+		        
+		      </div>
+		    </div>
+		  </div>
+
+		</div>
+		
+		
+	</main>
+	
+		
+	
+  	
+	
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

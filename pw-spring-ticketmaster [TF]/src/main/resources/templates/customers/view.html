@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace = "layout/layout :: header"></header>
+	
+	<div class="card" style="width: 40rem;">
+	  <div class="card-header">
+	    View Show
+	  </div>
+	  <div class="card-body">
+	  	<p>
+	  		Id: <span th:text="${customer.id}"></span> <br>
+	  		First Name: <span th:text="${customer.firstname}"></span> <br>
+	  		Last Name: <span th:text="${customer.lastname}"></span> <br>
+	  		Email: <span th:text="${customer.email}"></span> <br>
+	  		Password: <span th:text="${customer.password}"></span> <br>
+	  		Country: <span th:text="${customer.country.name}"></span> <br>
+	  		Gender: <span th:text="${customer.gender.name}"></span> <br>
+	  		
+	  	</p>
+	  	
+	    
+	    <a th:href="@{/customers}" class="btn btn-primary"> <i class="fas fa-angle-double-left"></i> Return</a>
+	  </div>
+	</div>
+	
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

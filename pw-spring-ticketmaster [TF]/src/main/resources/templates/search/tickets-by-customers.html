@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+	<main class="container mt-3">
+	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item">Search</li>
+		    <li class="breadcrumb-item">Show</li>
+		    <li class="breadcrumb-item active" aria-current="page">Result for <span th:text="${ticketbycustomerSearch.firstname}"></span> </li>
+		  </ol>
+	</nav>
+	
+		
+		<div class="row mb-4">
+		  
+		  <div th:each="customer : ${ticketbycustomerFound}"  class="col-sm-4">
+		  	<div th:each="ticket : ${customer.tickets}" >
+		    <div class="card">
+		      <div class="card-header">
+		      <h5 class="card-text" th:text="' Id:'+${ticket.id}">Special title treatment</h5>
+		      </div>
+		      <div class="card-body">
+		        
+			    <h5 class="card-title" th:text="'Show: '+${ticket.show.name}">With supporting text below as a natural lead-in to additional content.</h5>
+			    <h6 class="card-text" th:text="'Payment Option: '+${ticket.paymentOption.name}">With supporting text below as a natural lead-in to additional content.</h6>
+			    <p  class="card-text" th:text="'Customer first name: '+${ticket.customer.firstname}"></p>
+			    <p  class="card-text" th:text="'Customer last name: '+${ticket.customer.lastname}"></p>
+			    <p  class="card-text" th:text="'Credit card owner: '+${ticket.cardOwner}"></p>
+			    <p  class="card-text" th:text="'Credit card Number: '+${ticket.cardNumber}"></p>
+			    <p  class="card-text" th:text="'Expiration day card: '+${ticket.cardExpirationDay}"></p>
+			    <p  class="card-text" th:text="'CVV: '+${ticket.cvv}"></p>
+			    <p  class="card-text" th:text="'Price: '+${ticket.show.price}"></p>
+			    <p  class="card-text" th:text="'Taxes & others: '+${(ticket.show.price*0.2) + (ticket.show.price*0.18)}"></p>
+			    <h5  class="card-text" th:text="'Total: '+${ticket.show.price + (ticket.show.price*0.2) + (ticket.show.price*0.18)}"></h5>
+		        <a th:href="@{'/listAllTicketsCustomer/del/' + ${ticket.id}}" class="btn btn-danger mt-3"> <i class="fas fa-ban"></i> Refund </a>
+			    <a th:href="@{'/listAllTicketsCustomer/altview/' + ${ticket.id} }" class="btn btn-outline-info mt-3"> <i class="fas fa-external-link-alt"></i> Show Link</a>
+		      </div>
+		       </div>
+		    </div>
+		  </div>
+
+		</div>
+		
+		<a th:href="@{/listAllTicketsCustomer}" class="btn btn-primary"> <i class="fas fa-angle-double-left" ></i> Return</a>
+</main>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace = "layout/layout :: header"></header>
+	
+	<main class="container mt-4">
+	<div>
+	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item">Search</li>
+		    <li class="breadcrumb-item">Show</li>
+		    <li class="breadcrumb-item active" aria-current="page">Find By event Type </li>
+		  </ol>
+		</nav>
+		<form class="d-flex" th:action="@{/search/customer/showsByeventType}" th:object="${showbyeventtypeSearch}" method="get">
+	    	<input class="form-control me-2" type="search" th:field="*{name}" placeholder="Search Show by event type" aria-label="Search">
+	    	<button class="btn btn-light" type="submit">Search</button>
+	    </form>
+	
+	
+
+	<div class="card-body mt-3">
+	  
+	  	<table class="table" style="background-color:white">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Name</th>
+		      <th scope="col">Description</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="eventType : ${eventTypes}">
+		      <th th:text="${eventType.id}" scope="row">1</th>
+		      <td th:text="${eventType.name}">Mark</td>
+		      <td th:text="${eventType.description}">Mark</td>
+		    </tr>
+		  </tbody>
+		</table>
+	  </div>
+	</div>
+	
+
+		
+	
+	<hr>
+		<div class="row">
+		  
+		  <div th:each="show : ${shows}" class="col-sm-3">
+		    <div class="card">
+		      <div class="card-header">
+		      <h5 class="card-text" th:text="${show.name}">Special title treatment</h5>
+		      </div>
+		      <div class="card-body">  
+			    <h6 class="card-title" th:text="'Organiser: '+${show.organiser.name}">With supporting text below as a natural lead-in to additional content.</h6>
+			    <h6 class="card-text" th:text="'Event Type: '+${show.eventType.name}"></h6>
+			    <p class="card-text" th:text="'Date: '+${show.day} + '/'+${show.month}+'/'+${show.year}">.</p>
+			    <p class="card-text" th:text="'Description: '+${show.description}"></p>
+			    <p class="card-text" th:text="'Price: '+${show.price + (show.price*0.2)+(show.price*0.18)}"></p>
+		        <a th:href="@{'/listAllShowCustomer/new'}" class="btn btn-outline-warning"><i class="fas fa-comments"></i> Feedback</a>
+		        <a th:href="@{'/buys/new/'}" class="btn btn-success"><i class="fas fa-shopping-cart"></i> Buy</a>
+		      </div>
+		    </div>
+		  </div>
+
+		</div>
+		
+		
+	</main>
+	
+		
+	
+  	
+	
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

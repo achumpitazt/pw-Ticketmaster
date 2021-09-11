@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace = "layout/layout :: header"></header>
+	
+	<div class="card" style="width: 40rem;">
+	  <div class="card-header">
+	    Edit Show
+	  </div>
+	  <div class="card-body">
+	  	
+	  	<form th:action="@{/shows/save}" th:object="${showEdit}" method="post">
+		  <div class="mb-3">
+		    <label for="name" class="form-label">Name</label>
+		    <input type="text" class="form-control" th:field="*{name}" placeholder="Name of show" >
+		  	<label for="name" class="form-label">Description</label>
+		    <input type="text" class="form-control" th:field="*{description}" placeholder="Description of show" >
+		  	 <label for="name" class="form-label">Time</label>
+		    <input type="text" class="form-control" th:field="*{time}" placeholder="Time of show" >
+		  	 <label for="name" class="form-label">Day</label>
+		    <input type="text" class="form-control" th:field="*{day}" placeholder="Day of show" >
+		     <label for="name" class="form-label">Month</label>
+		    <input type="text" class="form-control" th:field="*{month}" placeholder="Month of show" >
+		     <label for="name" class="form-label">Year</label>
+		    <input type="text" class="form-control" th:field="*{year}" placeholder="Year of show" >
+		     <label for="name" class="form-label">Price</label>
+		    <input type="text" class="form-control" th:field="*{price}" placeholder="Price of show" >
+		     <label for="name" class="form-label">Event Type</label>
+		     <select th:field="*{eventType}" class="form-control">
+				      	<option th:each="eventType : ${eventTypes}" 
+				      		th:value="${eventType.id}" 
+				      		th:text="${eventType.name}" ></option>
+			 </select>
+		     <label for="name" class="form-label">Organiser</label>
+		     <select th:field="*{organiser}" class="form-control">
+				      	<option th:each="organiser : ${organisers}" 
+				      		th:value="${organiser.id}" 
+				      		th:text="${organiser.name}" ></option>
+			</select>
+			 <label for="name" class="form-label">Link</label>
+		    <input type="text" class="form-control" th:field="*{enlace}" placeholder="Price of show" >
+		  </div>
+
+		  <button type="submit" class="btn btn-primary">Update</button>
+		</form>
+		<br>
+  		<a th:href="@{/shows}" class="btn btn-primary"> <i class="fas fa-angle-double-left"></i> Return</a>
+	  </div>
+	</div>
+	
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

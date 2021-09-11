@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace = "layout/layout :: header"></header>
+	
+	<div class="card" style="width: 40rem;">
+	  <div class="card-header">
+	    Edit Show
+	  </div>
+	  <div class="card-body">
+	  	
+	  	<form th:action="@{/tickets/save}" th:object="${ticketEdit}" method="post">
+		  <div class="mb-3">
+		    <label for="name" class="form-label">Payment Option</label>
+		    <select th:field="*{paymentOption}" class="form-control">
+				      	<option th:each="paymentOption : ${paymentOptions}" 
+				      		th:value="${paymentOption.id}" 
+				      		th:text="${paymentOption.name}" ></option>
+			</select>
+			
+			<label for="name" class="form-label">Customer</label>
+			<select th:field="*{customer}" class="form-control">
+				      	<option th:each="customer : ${customers}" 
+				      		th:value="${customer.id}" 
+				      		th:text="${customer.firstname}+' ' +${customer.lastname}" ></option>
+			</select>
+			
+			<label for="name" class="form-label">Show</label>
+			<select th:field="*{show}" class="form-control">
+				      	<option th:each="show : ${shows}" 
+				      		th:value="${show.id}" 
+				      		th:text="${show.name}" ></option>
+			</select>
+		    
+		    <label for="name" class="form-label">Credit Card Owner</label>
+		    <input type="text" class="form-control" th:field="*{cardOwner}" placeholder="Name of the credit card owner" >
+		  	<label for="name" class="form-label">Credit Card Expiration Date</label>
+		    <input type="text" class="form-control" th:field="*{cardExpirationDay}" placeholder="Date of the expiration of the credit card" >
+		  	 <label for="name" class="form-label">CVV</label>
+		    <input type="text" class="form-control" th:field="*{cvv}" placeholder="CVV of the card" >
+		  </div>
+
+		  <button type="submit" class="btn btn-primary">Update</button>
+		</form>
+		<br>
+  		<a th:href="@{/tickets}" class="btn btn-primary"> <i class="fas fa-angle-double-left"></i> Return</a>
+	  </div>
+	</div>
+	
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace = "layout/layout :: header"></header>
+	<main class="container mt-3">
+	
+		<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item">Search</li>
+		    <li class="breadcrumb-item">Feedbacks</li>
+		    <li class="breadcrumb-item active" aria-current="page">Find By Customer </li>
+		  </ol>
+		</nav>
+		
+		<form class="d-flex" th:action="@{/search/customer/feedbacksBycustomers}" th:object="${feedbackbycustomerSearch}" method="get">
+	    	<input class="form-control me-2" type="search" th:field="*{firstname}" placeholder="Search Feedback by customer" aria-label="Search">
+	    	<button class="btn btn-light" type="submit">Search</button>
+	    </form>
+		
+
+		<div class="row" >
+		  
+		  <div th:each="feedback : ${feedbacks}" class="col-sm-3">
+		    <div class="card">
+		      <div class="card-header">
+		      <h4 class="card-text" th:text="'Show: '+ ${feedback.show.name}">Special title treatment</h4>
+		      </div>
+		      <div class="card-body">
+			    <h6 class="card-title" th:text="'Customer First Name: '+${feedback.customer.firstname}">With supporting text below as a natural lead-in to additional content.</h6>
+			    <h6 class="card-text" th:text="'Customer Last Name: '+${feedback.customer.lastname}"></h6>
+			    <p class="card-text" th:text="'Substance: '+${feedback.substance}">.</p>
+			    <a th:href="@{'/listAllFeedbackOrganiser/del/' + ${feedback.id}}" class="btn btn-danger"> <i class="fas fa-backspace"></i> Delete </a>
+		      </div>
+		    </div>
+		  </div>
+
+		</div>
+		
+		
+	</main>
+	
+		
+	
+  	
+	
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

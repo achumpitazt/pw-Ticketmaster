@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace = "layout/layout :: header"></header>
+	
+	<div class="card container" style="width: 100rem;">
+	  <div class="card-header">
+	    List of Feedbacks
+	  </div>
+	  <div class="card-body">
+	  
+	  	<table class="table table-striped table-hover">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Customer First Name</th>
+		      <th scope="col">Customer last Name</th>
+		      <th scope="col">Show Name</th>
+		      <th scope="col">Substance</th>
+		      <th scope="col"></th>
+		      <th scope="col"></th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="feedback : ${feedbacks}">
+		      <th th:text="${feedback.id}" scope="row">1</th>
+		      <td th:text="${feedback.customer.firstname}">Mark</td>
+		      <td th:text="${feedback.customer.lastname}">Mark</td>
+		      <td th:text="${feedback.show.name}">Mark</td>
+		      <td th:text="${feedback.substance}">Mark</td>
+		      <td> <a th:href="@{'/feedbacks/' + ${feedback.id} }" class="btn btn-outline-info"> <i class="fas fa-search"></i> </a> </td>
+		      <td> <a th:href="@{'/feedbacks/' + ${feedback.id} + '/edit'}" class="btn btn-outline-warning"> <i class="fas fa-edit"></i> </a></td> 
+		      <td> <a th:href="@{'/feedbacks/del/' + ${feedback.id}}" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> </a></td>  
+		    </tr>
+		  </tbody>
+		</table>
+	    
+	    
+	  </div>
+	</div>
+	
+	
+		
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

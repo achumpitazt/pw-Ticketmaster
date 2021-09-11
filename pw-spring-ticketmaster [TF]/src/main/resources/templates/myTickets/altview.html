@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	
+	<header th:replace = "layout/layout :: header"></header>
+	<div class="card" style="width: 40rem;">
+	  <div class="card-header">
+	    View Ticket
+	  </div>
+	  <div class="card-body">
+	  	<p>
+	  		Id: <span th:text="${ticket.id}"></span> <br>
+	  		Payment Option: <span th:text="${ticket.paymentOption.name}"></span> <br>
+	  		Customer First Name: <span th:text="${ticket.customer.firstname}"></span> <br>
+	  		Customer Last Name: <span th:text="${ticket.customer.lastname}"></span> <br>
+	  		Show Name: <span th:text="${ticket.show.name}"></span> <br>
+	  		Credit Card Owner: <span th:text="${ticket.cardOwner}"></span> <br>
+	  		Card Number: <span th:text="${ticket.cardNumber}"></span> <br>
+	  		Card Expiration Day: <span th:text="${ticket.cardExpirationDay}"></span> <br>
+	  		CVV: <span th:text="${ticket.cvv}"></span> <br>
+	  		
+	  	</p>
+	  	
+	    
+	    <a th:href="@{'/tickets/myTickets'}" class="btn btn-primary"> <i class="fas fa-angle-double-left"></i> Return</a>
+	  </div>
+	</div>
+	
+	
+	
+	
+	<footer th:replace = "layout/layout :: footer"></footer>
+ 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>
